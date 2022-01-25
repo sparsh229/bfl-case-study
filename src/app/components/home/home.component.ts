@@ -9,9 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   
-  constructor(private dataStore:DatastoreService,private activatedroute:ActivatedRoute) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
-  people:Data = this.dataStore.matchData(this.activatedroute.snapshot.paramMap.get('id'));
 }

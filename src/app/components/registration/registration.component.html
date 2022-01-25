@@ -1,39 +1,40 @@
-<section class="vh-100 gradient-custom">
+<section class=" gradient-custom">
     <div class="container py-5 h-100">
       <div class="row justify-content-center align-items-center h-100">
         <div class="col-12 col-lg-9 col-xl-7">
           <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
             <div class="card-body p-4 p-md-5">
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form for loan application</h3>
-              <form>
+              <form [formGroup]="forms">
   
                 <div class="row">
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="text" id="firstName" [(ngModel)] = "people.fname" name="first" class="form-control form-control-lg" />
+                      <input type="text" id="firstName" formControlName="fname" name="first" class="form-control form-control-lg" />
                       <label class="form-label" for="firstName">First Name</label>
                     </div>
-  
+                  </div>
+                  <div *ngIf="forms.get('fname')?.touched && forms.get('fname')?.invalid" class="alert alert-danger">
+                    First Name is required!
                   </div>
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="text" id="lastName" [(ngModel)] = "people.lname" name="last" class="form-control form-control-lg" />
+                      <input type="text" id="lastName" formControlName="lname" name="last" class="form-control form-control-lg" />
                       <label class="form-label" for="lastName">Last Name</label>
                     </div>
-  
                   </div>
                 </div>
   
                 <div class="row">
                   <div class="col-md-6 mb-4 d-flex align-items-center">
   
-                    <div class="form-outline datepicker w-100">
+                    <div class="form-outline">
                       <input
                         type="text"
                         class="form-control form-control-lg"
-                        [(ngModel)] = "people.dob"
+                        formControlName="dob"
                         name="dob"
                         id="birthdayDate"
                       />
@@ -41,13 +42,16 @@
                     </div>
   
                   </div>
+                  <div *ngIf="forms.get('dob')?.touched && forms.get('dob')?.invalid" class="alert alert-danger">
+                    Date of birth is required!
+                  </div>
                   <div class="col-md-6 mb-4 d-flex align-items-center">
   
                     <div class="form-outline datepicker w-100">
                       <input
                         type="text"
                         class="form-control form-control-lg"
-                        [(ngModel)] = "people.gender"
+                        formControlName="gender"
                         name="gender"
                         id="Gender"
                       />
@@ -55,39 +59,51 @@
                     </div>
   
                   </div>
+                  
                 </div>
   
                 <div class="row">
                   <div class="col-md-6 mb-4 pb-2">
   
                     <div class="form-outline">
-                      <input type="email" id="emailAddress" [(ngModel)] = "people.email" name="email" class="form-control form-control-lg" />
+                      <input type="email" id="emailAddress" formControlName="email" name="email" class="form-control form-control-lg" />
                       <label class="form-label" for="emailAddress">Email</label>
                     </div>
   
                   </div>
+                  <div *ngIf="forms.get('email')?.touched && forms.get('email')?.invalid" class="alert alert-danger">
+                    Please enter a valid email address!
+                  </div>
                   <div class="col-md-6 mb-4 pb-2">
   
                     <div class="form-outline">
-                      <input type="password" id="password" [(ngModel)] = "people.password" name="password" class="form-control form-control-lg" />
+                      <input type="password" id="password" formControlName="password" name="password" class="form-control form-control-lg" />
                       <label class="form-label" for="password">Password</label>
                     </div>
   
+                  </div>
+                  <div *ngIf="forms.get('password')?.touched && !forms.get('password')?.dirty" class="alert alert-danger">
+                    Password is required!
+                  </div>
+                  <div *ngIf="forms.get('password')?.dirty && forms.get('password')?.invalid" class="alert alert-danger">
+                    Password must be of length 8!
                   </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-4 pb-2">
     
                       <div class="form-outline">
-                        <input type="tel" id="phonenumber" [(ngModel)] = "people.phno" name="phonenumber" class="form-control form-control-lg" />
+                        <input type="tel" id="phonenumber" formControlName="phno" name="phonenumber" class="form-control form-control-lg" />
                         <label class="form-label" for="phonenumber">Phone number</label>
                       </div>
     
                     </div>
+                    <div *ngIf="forms.get('phno')?.dirty && forms.get('phno')?.invalid" class="alert alert-danger">
+                      Please enter a phone number!
+                    </div>
                   </div>
-  
                 <div class="mt-4 pt-2">
-                  <input class="btn btn-primary btn-lg" type="submit" (click)="onSubmit()" value="Submit" />
+                  <button class="btn btn-primary btn-lg" [disabled]="!forms.valid" type="submit" (click)="onSubmit()" value="Submit">Register</button>
                 </div>
   
               </form>

@@ -1,0 +1,21 @@
+<div class="ui-buttons">
+    <button type="button" class="btn btn-primary check-btn" (click)="onCheck()" > Check status </button>
+    <button class="btn btn-outline-primary logout" (click)="logout()" >Logout</button>
+</div>
+<div class="user-profile">
+    <h1 class="display-4" >Welcome , {{people.fname+" "+people.lname}} </h1>
+    <div class="info">
+           <p>Here is your profile information.</p>  
+            <ul>{{people.fname+" "+people.lname}}</ul>
+            <ul>{{people.dob}}</ul>
+            <ul>{{people.email}}</ul>
+            <ul>{{people.phno}}</ul>
+            <ul>{{people.gender}}</ul>
+            <button class="btn btn-dark">Edit info</button>
+            <p>Enter type of loan you want</p>
+            <div class="form-group col-sm-3">
+                <input type="text" class="form-control" id="tol" >
+              </div>
+            <button class="btn btn-success">Confirm</button>
+    </div>
+</div>

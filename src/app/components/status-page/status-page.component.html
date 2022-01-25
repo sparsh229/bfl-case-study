@@ -1,0 +1,6 @@
+<h1 class="display-2">Your request is : {{status}}</h1>
+<button class="btn btn-dark" (click)="navback()" > Go home </button>
+<div *ngIf="status === 'disapproved'" >
+    <p>Reason for disapproval:</p>
+    <p>{{reason}}</p>
+</div>

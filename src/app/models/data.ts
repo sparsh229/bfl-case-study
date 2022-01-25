@@ -1,3 +1,4 @@
+import { LoanInfo } from "./loan-info";
 export class Data {
     fname :string;
     lname :string;
@@ -6,6 +7,7 @@ export class Data {
     email:string;
     password:string;
     phno:number;
+    loanInfo : LoanInfo;
     constructor(){
         this.fname='';
         this.lname = '';
@@ -14,5 +16,6 @@ export class Data {
         this.email='';
         this.password='';
         this.phno = 0;
+        this.loanInfo = new LoanInfo();
     }
 }

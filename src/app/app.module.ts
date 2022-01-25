@@ -7,20 +7,33 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
+import { AdminComponent } from './components/admin/admin.component';
+import { LoanDetailsComponent } from './components/loan-details/loan-details.component';
+import { StatusPageComponent } from './components/status-page/status-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { EditComponent } from './components/edit/edit.component';
+import { DisapprovalComponent } from './components/admin/disapproval/disapproval.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    AdminComponent,
+    LoanDetailsComponent,
+    StatusPageComponent,
+    UserProfileComponent,
+    EditComponent,
+    DisapprovalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [],

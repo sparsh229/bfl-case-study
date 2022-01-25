@@ -1,0 +1,36 @@
+<h3 class="heading-3">Type of loan you selected : {{loanType}}</h3>
+<div class="loan-details">
+    <p>Here are the details for your selected loan:</p>
+    <div [ngSwitch]="loanType" >
+        <div *ngSwitchCase="'home'">
+            <ul>Interest Rate: 6.7% per annum</ul>
+            <ul>Processing Fee : 0.5% of loan amount</ul>
+        </div>
+        <div *ngSwitchCase="'personal'">
+            <ul>Interest Rate: 15% per annum</ul>
+            <ul>Processing Fee : 3% of loan amount</ul>
+        </div>
+        <div *ngSwitchCase="'car'">
+            <ul>Interest Rate: 7% per annum</ul>
+            <ul>Processing Fee : <b>No processing fee!!</b></ul>
+        </div>
+        <div *ngSwitchCase="'education'">
+            <ul>Interest Rate: 9% per annum</ul>
+            <ul>Processing Fee : 1% of loan amount</ul>
+        </div>
+    </div>
+</div>
+<div class="user-input">
+    <form>
+        <div class="form-group">
+          <label for="loanAmount">Loan Amount</label>
+          <input type="number" class="form-control col-sm-3" [formControl] = "loanAmount" >
+        </div>
+        <div class="form-group">
+          <label for="loanDuration">Loan Tenure</label>
+          <input type="number" class="form-control col-sm-3" [formControl] = "loanDuration" >
+        </div>
+        <button type="submit" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+

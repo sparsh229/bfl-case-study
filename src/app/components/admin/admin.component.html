@@ -1,0 +1,25 @@
+<table class="table" >
+    <thead>
+        <tr>
+            <th>Loan type</th>
+            <th>Interest Rate</th>
+            <th>Interest Amount</th>
+            <th>Loan term</th>
+            <th>Total Amount</th>
+            <th>Accept</th>
+            <th>Reject</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let loan of loanInfo ; let index=index;">
+            <td>{{this.loanType}}</td>
+            <td>{{loan.interestRate}}</td>
+            <td>{{loan.loanAmount}}</td>
+            <td>{{loan.loanTerm}}</td>
+            <td>{{loan.totalamount}}</td>
+            <td><button class="btn btn-primary"(click)="onAccept(index)" >Accept</button></td>
+            <td><button class="btn btn-danger"(click)="onReject(index)" >Reject</button></td>
+        </tr>
+    </tbody>
+</table>
+<app-disapproval *ngIf="!status" ></app-disapproval>

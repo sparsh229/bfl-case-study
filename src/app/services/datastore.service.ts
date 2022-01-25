@@ -15,7 +15,7 @@ export class DatastoreService {
     const jsonData = JSON.stringify(this.users);
     localStorage.setItem('myData',jsonData);
   }
-  matchData(email?:string):Data{
+  matchData(email:string|null):Data{
     const jsonData:string|null = localStorage.getItem('myData');
     if(jsonData){
       var data = JSON.parse(jsonData);
