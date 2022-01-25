@@ -11,11 +11,11 @@
             <ul>{{people.email}}</ul>
             <ul>{{people.phno}}</ul>
             <ul>{{people.gender}}</ul>
-            <button class="btn btn-dark">Edit info</button>
+            <button class="btn btn-dark"(click)="onEdit()" >Edit info</button>
             <p>Enter type of loan you want</p>
             <div class="form-group col-sm-3">
                 <input type="text" class="form-control" id="tol" >
               </div>
-            <button class="btn btn-success">Confirm</button>
+            <button class="btn btn-success" (click)="onSubmit()" >Confirm</button>
     </div>
 </div>

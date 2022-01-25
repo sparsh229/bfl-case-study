@@ -1,1 +1,105 @@
-<p>edit works!</p>
+<section class=" gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row justify-content-center align-items-center h-100">
+        <div class="col-12 col-lg-9 col-xl-7">
+          <div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+            <div class="card-body p-4 p-md-5">
+              <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Update your details</h3>
+              <form [formGroup]="forms">
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <input type="text" id="firstName" formControlName="fname" name="first" class="form-control form-control-lg" />
+                      <label class="form-label" for="firstName">First Name</label>
+                    </div>
+                  </div>
+                  <div *ngIf="forms.get('fname')?.touched && forms.get('fname')?.invalid" class="alert alert-danger">
+                    First Name is required!
+                  </div>
+                  <div class="col-md-6 mb-4">
+  
+                    <div class="form-outline">
+                      <input type="text" id="lastName" formControlName="lname" name="last" class="form-control form-control-lg" />
+                      <label class="form-label" for="lastName">Last Name</label>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+  
+                    <div class="form-outline">
+                      <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        formControlName="dob"
+                        name="dob"
+                        id="birthdayDate"
+                      />
+                      <label for="birthdayDate" class="form-label">Birthday</label>
+                    </div>
+  
+                  </div>
+                  <div *ngIf="forms.get('dob')?.touched && forms.get('dob')?.invalid" class="alert alert-danger">
+                    Date of birth is required!
+                  </div>
+                  <div class="col-md-6 mb-4 d-flex align-items-center">
+  
+                    <div class="form-outline datepicker w-100">
+                      <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        formControlName="gender"
+                        name="gender"
+                        id="Gender"
+                      />
+                      <label for="gender" class="form-label">Gender</label>
+                    </div>
+  
+                  </div>
+                  
+                </div>
+  
+                <div class="row">
+  
+                  <div class="col-md-6 mb-4 pb-2">
+  
+                    <div class="form-outline">
+                      <input type="password" id="password" formControlName="password" name="password" class="form-control form-control-lg" />
+                      <label class="form-label" for="password">Password</label>
+                    </div>
+  
+                  </div>
+                  <div *ngIf="forms.get('password')?.touched && !forms.get('password')?.dirty" class="alert alert-danger">
+                    Password is required!
+                  </div>
+                  <div *ngIf="forms.get('password')?.dirty && forms.get('password')?.invalid" class="alert alert-danger">
+                    Password must be of length 8!
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-4 pb-2">
+    
+                      <div class="form-outline">
+                        <input type="tel" id="phonenumber" formControlName="phno" name="phonenumber" class="form-control form-control-lg" />
+                        <label class="form-label" for="phonenumber">Phone number</label>
+                      </div>
+    
+                    </div>
+                    <div *ngIf="forms.get('phno')?.dirty && forms.get('phno')?.invalid" class="alert alert-danger">
+                      Please enter a phone number!
+                    </div>
+                  </div>
+                <div class="mt-4 pt-2">
+                  <button class="btn btn-primary btn-lg" [disabled]="!forms.valid" type="submit" (click)="onSubmit()" value="Submit">Register</button>
+                </div>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

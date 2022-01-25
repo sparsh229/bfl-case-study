@@ -34,4 +34,11 @@ export class UserProfileComponent implements OnInit {
     //after logout redirect to login page
     this.router.navigate(['/login']);
   }
+  onEdit(){
+    this.router.navigate(['/edit']);
+  }
+  onSubmit(){
+    //save some data and redirect to loan info page
+    this.router.navigate(['/loaninfo']);
+  }
 }
