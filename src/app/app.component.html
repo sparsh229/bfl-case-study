@@ -1,5 +1,5 @@
 <section id="navbar">
-  <div>
+  <div *ngIf="!isAdmin;else admin">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <ul class="navbar-nav">
           <li class="nav-item active">
@@ -11,20 +11,20 @@
           <li class="nav-item active">
             <a class="nav-link" routerLink="/login">Login</a>
           </li>
+          <li class="nav-item active">
+            <button class="nav-link" (click)="onClick()" >Profile</button>
+          </li>
       </ul>
     </nav>
  </div>
-  <div *ngIf="isAdmin">
+  <ng-template #admin>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" routerLink="/registration">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/approved">Approved</a>
+            <a class="nav-link" routerLink="/admin">Admin</a>
           </li>
       </ul>
     </nav>
-  </div>
+  </ng-template>
 </section>
 <router-outlet></router-outlet>

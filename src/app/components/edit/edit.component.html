@@ -11,7 +11,7 @@
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="text" id="firstName" formControlName="fname" name="first" class="form-control form-control-lg" />
+                      <input placeholder={{user.fname}} type="text" id="firstName" formControlName="fname" name="first" class="form-control form-control-lg" />
                       <label class="form-label" for="firstName">First Name</label>
                     </div>
                   </div>
@@ -21,7 +21,7 @@
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="text" id="lastName" formControlName="lname" name="last" class="form-control form-control-lg" />
+                      <input type="text" id="lastName" placeholder={{user.lname}} formControlName="lname" name="last" class="form-control form-control-lg" />
                       <label class="form-label" for="lastName">Last Name</label>
                     </div>
                   </div>
@@ -36,6 +36,7 @@
                         class="form-control form-control-lg"
                         formControlName="dob"
                         name="dob"
+                        placeholder={{user.dob}}
                         id="birthdayDate"
                       />
                       <label for="birthdayDate" class="form-label">Birthday</label>
@@ -53,6 +54,7 @@
                         class="form-control form-control-lg"
                         formControlName="gender"
                         name="gender"
+                        placeholder={{user.gender}}
                         id="Gender"
                       />
                       <label for="gender" class="form-label">Gender</label>
@@ -67,7 +69,7 @@
                   <div class="col-md-6 mb-4 pb-2">
   
                     <div class="form-outline">
-                      <input type="password" id="password" formControlName="password" name="password" class="form-control form-control-lg" />
+                      <input type="password" placeholder={{user.password}} id="password" formControlName="password" name="password" class="form-control form-control-lg" />
                       <label class="form-label" for="password">Password</label>
                     </div>
   
@@ -83,7 +85,7 @@
                     <div class="col-md-6 mb-4 pb-2">
     
                       <div class="form-outline">
-                        <input type="tel" id="phonenumber" formControlName="phno" name="phonenumber" class="form-control form-control-lg" />
+                        <input type="tel" id="phonenumber" placeholder={{user.phno}} formControlName="phno" name="phonenumber" class="form-control form-control-lg" />
                         <label class="form-label" for="phonenumber">Phone number</label>
                       </div>
     

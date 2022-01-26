@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoanInfo } from 'src/app/models/loan-info';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatastoreService } from 'src/app/services/datastore.service';
+import { Data } from 'src/app/models/data';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -8,32 +10,31 @@ import { LoanInfo } from 'src/app/models/loan-info';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private datastorage:DatastoreService,private activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
   }
   //import data from loan-info model from local storage and display array in table
-  //for now some hardcoded data
-  loanType: string = "Home Loan";
-  loanInfo:LoanInfo[] = [{interestRate: 7,
-    processingfee : 0,
-    loanAmount: 10000,
-    loanTerm: 2,
-    totalamount: 20000},{interestRate: 7,
-      processingfee : 0,
-      loanAmount: 30000,
-      loanTerm: 4,
-      totalamount: 50000}];
-  status:boolean = true;
-  onAccept(index:number){
+  //get email id from params
+  feedbackval = new FormControl('');
+  feedback:string = '';
+  email:string|null = this.activatedroute.snapshot.params['emailid'];
+  users:Data[] = this.datastorage.getAllUsers();
+  status:boolean = false;
+  onAccept(email:string,index:number){
     //find the request and mark accept in its status
-    //then delete the request from his array
+    this.datastorage.updateApproval(email,index);
   }
-  onReject(index:number){
-     this.status = false;
+  onReject(){
+    this.status = true;
+  }
+  onSubmit(email:string,index:number){
     //open a comment page to add comments - disapproval component
-    // and then delete it from list
     // show user the reason for disapproval
-    this.router.navigate(['/disapproval']); //also send request id
+    this.feedback = this.feedbackval.value;
+    this.datastorage.updateComment(email,index,this.feedback);
+  }
+  onLogout(){
+    this.router.navigate(['/login']);
   }
 }

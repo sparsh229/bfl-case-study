@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatastoreService } from 'src/app/services/datastore.service';
 import { Data } from 'src/app/models/data';
 import { ActivatedRoute, Router } from '@angular/router';
-import { LoanInfo } from 'src/app/models/loan-info';
+import { FormControl } from '@angular/forms';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -10,35 +10,32 @@ import { LoanInfo } from 'src/app/models/loan-info';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor(private dataStore:DatastoreService,private router:Router) { }
+  constructor(private dataStore:DatastoreService,private router:Router,private activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
   }
-  //people:Data = this.dataStore.matchData(this.activatedroute.snapshot.paramMap.get('id'));
-  people:Data = {
-    fname:'Sparsh',
-    lname:'Kumar',
-    dob:'12/12/12',
-    gender:'male',
-    email:'sparshrocks22@gmial.com',
-    password:'12345678',
-    phno:7014293783,
-    loanInfo:new LoanInfo
-  };
-  onCheck(){
-    this.router.navigate(['/statuspage']); //pass one more parameter for user specific status
+  emailid:string|null = this.activatedroute.snapshot.paramMap.get('emailid');
+
+  //get all user info
+  people:Data = this.dataStore.matchData(this.emailid);
+
+
+  //check status of loan approval
+  onCheck(){  //completed
+    this.router.navigate(['/statuspage',this.emailid]); //pass one more parameter for user specific status
   }
-  logout(){
+  logout(){ //completed
     //delete user from local storage
-    //yet to be implemented
+    this.dataStore.deleteData(this.emailid);
+
     //after logout redirect to login page
     this.router.navigate(['/login']);
   }
-  onEdit(){
-    this.router.navigate(['/edit']);
+  onEdit(){ //completed
+    this.router.navigate(['/edit',this.emailid]);
   }
-  onSubmit(){
-    //save some data and redirect to loan info page
-    this.router.navigate(['/loaninfo']);
+  onSubmit(){  //completed
+    //redirect to loan info page
+    this.router.navigate(['/loandetails',this.emailid]);
   }
 }

@@ -1,6 +1,16 @@
-<h1 class="display-2">Your request is : {{status}}</h1>
 <button class="btn btn-dark" (click)="navback()" > Go home </button>
-<div *ngIf="status === 'disapproved'" >
-    <p>Reason for disapproval:</p>
-    <p>{{reason}}</p>
+<div *ngFor="let requests of loanInfo" >
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+        <h6 *ngIf="requests.isApproved" class="display-6 approved "> Request Approved</h6>
+        <h6 *ngIf="!requests.isApproved" class="display-6 approved "> Request still pending or not approved!! Check again after sometime</h6>
+        <p class="card-text">{{requests.loanType}}</p>
+        <p class="card-text">{{requests.interestRate}}</p>
+        <p class="card-text">{{requests.processingfee}}</p>
+        <p class="card-text">{{requests.loanAmount}}</p>
+        <p class="card-text">{{requests.loanTerm}}</p>
+        <p class="card-text">{{requests.totalamount}}</p>
+        <p *ngIf="requests.comment!==''" class="card-text">{{requests.comment}}</p>
+        </div>
+    </div>
 </div>

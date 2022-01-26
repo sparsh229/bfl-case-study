@@ -1,22 +1,37 @@
-<h3 class="heading-3">Type of loan you selected : {{loanType}}</h3>
-<div class="loan-details">
-    <p>Here are the details for your selected loan:</p>
-    <div [ngSwitch]="loanType" >
-        <div *ngSwitchCase="'home'">
-            <ul>Interest Rate: 6.7% per annum</ul>
-            <ul>Processing Fee : 0.5% of loan amount</ul>
-        </div>
-        <div *ngSwitchCase="'personal'">
-            <ul>Interest Rate: 15% per annum</ul>
-            <ul>Processing Fee : 3% of loan amount</ul>
-        </div>
-        <div *ngSwitchCase="'car'">
-            <ul>Interest Rate: 7% per annum</ul>
-            <ul>Processing Fee : <b>No processing fee!!</b></ul>
-        </div>
-        <div *ngSwitchCase="'education'">
-            <ul>Interest Rate: 9% per annum</ul>
-            <ul>Processing Fee : 1% of loan amount</ul>
+<form>
+    <p>Choose a loan type from:</p>
+    <ol>
+        <li>home</li>
+        <li>personal</li>
+        <li>car</li>
+        <li>education</li>
+    </ol>
+    <div class="form-group col-sm-3">
+        <label for="loanType">Loan type</label>
+        <input type="text" class="form-control" [formControl] = "LoanTypeValue" name="loanType" >
+    </div>
+    <button class="btn btn-secondary" (click)="onConfirm()" > Confirm </button>
+</form>
+<div *ngIf="confirmed">
+    <div class="loan-details">
+        <p>Here are the details for your selected loan:</p>
+        <div [ngSwitch]="loanType" >
+            <div *ngSwitchCase="'home'">
+                <ul>Interest Rate: 6.7% per annum</ul>
+                <ul>Processing Fee : 0.5% of loan amount</ul>
+            </div>
+            <div *ngSwitchCase="'personal'">
+                <ul>Interest Rate: 15% per annum</ul>
+                <ul>Processing Fee : 3% of loan amount</ul>
+            </div>
+            <div *ngSwitchCase="'car'">
+                <ul>Interest Rate: 7% per annum</ul>
+                <ul>Processing Fee : <b>No processing fee!!</b></ul>
+            </div>
+            <div *ngSwitchCase="'education'">
+                <ul>Interest Rate: 9% per annum</ul>
+                <ul>Processing Fee : 1% of loan amount</ul>
+            </div>
         </div>
     </div>
 </div>

@@ -13,7 +13,6 @@ import { LoanDetailsComponent } from './components/loan-details/loan-details.com
 import { StatusPageComponent } from './components/status-page/status-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditComponent } from './components/edit/edit.component';
-import { DisapprovalComponent } from './components/admin/disapproval/disapproval.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +25,6 @@ import { DisapprovalComponent } from './components/admin/disapproval/disapproval
     StatusPageComponent,
     UserProfileComponent,
     EditComponent,
-    DisapprovalComponent,
   ],
   imports: [
     BrowserModule,

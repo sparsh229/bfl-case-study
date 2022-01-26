@@ -10,21 +10,27 @@ import { LoanInfo } from 'src/app/models/loan-info';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+  people:Data = new Data();
+  userExists:boolean = false;
   forms = new FormGroup({
-    fname : new FormControl('',Validators.required),
-    lname : new FormControl(''),
+    fname : new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z]*')]),
+    lname : new FormControl('',Validators.pattern('[a-zA-Z]*')),
     dob : new FormControl('',Validators.required),
     gender : new FormControl(''),
     email : new FormControl('',[Validators.email,Validators.required]),
     password : new FormControl('',[Validators.required,Validators.minLength(8)]),
     phno : new FormControl('',Validators.required),
   });
-  people:Data = new Data();
   constructor(private dataStore:DatastoreService,private router:Router) { }
 
   ngOnInit(): void {
   }
   onSubmit(){
+    let user:Data =  this.dataStore.matchData(this.forms.get('email')?.value);
+    if(Object.keys(user).length===0){
+      this.userExists = true;
+      return;
+    }
     this.people = {
       fname:this.forms.get('fname')?.value,
       lname:this.forms.get('lname')?.value,
@@ -33,9 +39,8 @@ export class RegistrationComponent implements OnInit {
       email:this.forms.get('email')?.value,
       password:this.forms.get('password')?.value,
       phno:this.forms.get('phno')?.value,
-      loanInfo:new LoanInfo
+      loanInfo:[]
     }
-    console.log(this.people);
     this.dataStore.setData(this.people);
     this.people = new Data();
     this.router.navigateByUrl("/login");

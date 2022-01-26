@@ -23,7 +23,7 @@
                   You are logged in!
                 </div>
                 <div *ngIf="!success && isHit" class="alert alert-danger" >
-                  Email or password is incorrect!
+                  Email or password is incorrect! New User? Register <a [routerLink]="['/registration']">here</a>
                 </div>
               </form>
   

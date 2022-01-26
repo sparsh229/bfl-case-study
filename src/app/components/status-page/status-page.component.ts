@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatastoreService } from 'src/app/services/datastore.service';
+import { LoanInfo } from 'src/app/models/loan-info';
 @Component({
   selector: 'app-status-page',
   templateUrl: './status-page.component.html',
@@ -8,16 +9,15 @@ import { Router } from '@angular/router';
 })
 export class StatusPageComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router,private datastore:DatastoreService,private activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
   }
-  //right now hardcoded , get it from the service
-  status :string = "approved";
+  //get email id
+  email:string|null = this.activatedroute.snapshot.paramMap.get('emailid');
+  //get loan info from service
+  loanInfo:LoanInfo[] = this.datastore.getLoanInfo(this.email);
   navback(){
-    this.router.navigate(['/userprofile']);//pass another paramter for user id
+    this.router.navigate(['/userprofile',this.email]);//pass another paramter for user id
   }
-  //get reasonmessage from service
-  reason:string = "";
-  //if a request is disapproved make it go from service
 }
