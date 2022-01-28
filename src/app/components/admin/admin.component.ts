@@ -25,7 +25,7 @@ export class AdminComponent implements OnInit {
   users:Data[] = this.datastorage.getAllUsers();
 
   items:AllData[]= [];
- 
+  action:boolean = false;
 
   status:boolean = false;
   onAccept(email:string,index:number){
@@ -34,14 +34,17 @@ export class AdminComponent implements OnInit {
   }
   onReject(){
     this.status = true;
+    this.action = true;
   }
   onSubmit(email:string,index:number){
     //open a comment page to add comments - disapproval component
     // show user the reason for disapproval
     this.feedback = this.feedbackval.value;
     this.datastorage.updateComment(email,index,this.feedback);
-    this.router.navigate(['/admin']);
     console.log("comment added");
+    this.status = false;
+    this.action = true;
+    this.router.navigate(['/admin']);
   }
   onLogout(){
     this.router.navigate(['/login']);

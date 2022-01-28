@@ -3,14 +3,15 @@
     <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h6 *ngIf="requests.isApproved" class="display-6 approved "> Request Approved</h6>
-        <h6 *ngIf="!requests.isApproved" class="display-6 approved "> Request still pending or not approved!! Check again after sometime</h6>
+        <div *ngIf="!requests.isApproved && requests.comment==''" class="alert alert-danger"> Request still pending ! Check again after sometime</div>
+        <div *ngIf="!requests.isApproved && requests.comment!==''" class="alert alert-danger"> Request not approved !</div>
         <p class="card-text">Loan type : {{requests.loanType}}</p>
         <p class="card-text">Interest rate:{{requests.interestRate}} %p.a.</p>
         <p class="card-text">Processing fee: Rs.{{requests.processingfee}}</p>
         <p class="card-text">Loan Amount: Rs.{{requests.loanAmount}}</p>
         <p class="card-text">Loan Term: {{requests.loanTerm}} years</p>
         <p class="card-text">Total amount: Rs.{{requests.totalamount}}</p>
-        <p *ngIf="requests.comment!==''" class="card-text">{{requests.comment}}</p>
+        <p *ngIf="requests.comment!==''" class="card-text">Feedback : {{requests.comment}}</p>
         </div>
     </div>
 </div>
