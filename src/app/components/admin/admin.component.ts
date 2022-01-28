@@ -31,6 +31,8 @@ export class AdminComponent implements OnInit {
   onAccept(email:string,index:number){
     //find the request and mark accept in its status
     this.datastorage.updateApproval(email,index);
+    this.action = true;
+    alert("Approved");
   }
   onReject(){
     this.status = true;
