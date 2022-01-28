@@ -1,5 +1,5 @@
 <section id="navbar">
-  <div *ngIf="!isAdmin;else admin">
+  <div>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <ul class="navbar-nav">
           <li class="nav-item active">
@@ -17,14 +17,5 @@
       </ul>
     </nav>
  </div>
-  <ng-template #admin>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" routerLink="/admin">Admin</a>
-          </li>
-      </ul>
-    </nav>
-  </ng-template>
 </section>
 <router-outlet></router-outlet>

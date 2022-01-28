@@ -2,8 +2,15 @@
     float: right;
     margin : 10px 10px;
 }
+.user-profile{
+    margin: 10px 10px;
+}
 .user-profile h1{
     text-align: center;
+}
+.logout{
+    float:left;
+    margin: 10px 10px;
 }
 .user-profile button{
     margin : 20px 20px;

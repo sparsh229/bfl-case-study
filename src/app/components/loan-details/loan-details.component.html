@@ -10,7 +10,7 @@
         <label for="loanType">Loan type</label>
         <input type="text" class="form-control" [formControl] = "LoanTypeValue" name="loanType" >
     </div>
-    <button class="btn btn-secondary" (click)="onConfirm()" > Confirm </button>
+    <button class="btn btn-secondary confirm" (click)="onConfirm()" > Confirm </button>
 </form>
 <div *ngIf="confirmed">
     <div class="loan-details">

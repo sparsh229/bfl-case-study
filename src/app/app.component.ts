@@ -9,11 +9,14 @@ import { AdminService } from './services/admin.service';
 })
 export class AppComponent {
   constructor(private datastore:DatastoreService,private router:Router,private adminservice:AdminService){
-
   }
-  isAdmin:boolean = this.adminservice.isAdmin;
   title = 'bajaj-loan';
+  isAdmin:boolean = false;
   onClick(){
     this.router.navigate(['/userprofile',this.datastore.currentUser]);
+  }
+  setAuth(){
+     this.isAdmin = this.adminservice.isAdmin;
+     console.log(this.isAdmin);
   }
 }

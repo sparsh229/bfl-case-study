@@ -3,28 +3,32 @@
     <thead>
         <tr>
             <th>Full Name</th>
-            <th>Loan-type | Interest-Rate | Amount | Loan-term | Total Amount</th>
+            <th>Loan-type</th>
+            <th>Interest-Rate</th>
+            <th>Amount</th>
+            <th>Loan-term</th>
+            <th>Total Amount</th>
+            <th>Approval status</th>
             <th>Accept</th>
             <th>Reject</th>
+            <th>Feedback</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let user of users ">
-            <td>{{user.fname+" "+user.lname}}</td>
-            <div *ngFor="let loan of user.loanInfo ; let index = index" >
-                <td>{{loan.loanType}}</td>
-                <td>{{loan.interestRate}}</td>
-                <td>{{loan.loanAmount}}</td>
-                <td>{{loan.loanTerm}}</td>
-                <td>{{loan.totalamount}}</td>
-                <td><button class="btn btn-primary"(click)="onAccept(user.email,index)" >Accept</button></td>
-                <td><button class="btn btn-danger"(click)="onReject()" >Reject</button></td>
-                <div *ngIf="status" >
-                    <div class="form-group col-sm-3">
-                        <label for="feedback">Feedback</label>
-                        <input type="text" class="form-control" id="feedback" [formControl]="feedbackval" >
-                    </div>
-                    <button class="btn btn-primary" (click)="onSubmit(user.email,index)" >Submit</button>
+        <tr *ngFor="let item of items ; let index = index">
+            <td>{{item.fname+" "+item.lname}}</td>
+            <td>{{item.loanType}}</td>
+            <td>{{item.interestRate}} % p.a.</td>
+            <td>Rs.{{item.loanAmount}}</td>
+            <td>{{item.loanTerm}} years</td>
+            <td>Rs.{{item.totalamount}}</td>
+            <td>{{item.isApproved}}</td>
+            <td *ngIf="!item.isApproved" ><button class="btn btn-primary"(click)="onAccept(item.email,index)" >Accept</button></td>
+            <td *ngIf="!item.isApproved" ><button class="btn btn-danger"(click)="onReject()" >Reject</button></td>
+            <div *ngIf="status && !item.isApproved" >
+                <div class="form-group col-sm-3 feedback">
+                    <input type="text" class="form-control" id="feedback" [formControl]="feedbackval" >
+                    <button class="btn btn-primary" (click)="onSubmit(item.email,index)" >Submit</button>
                 </div>
             </div>
         </tr>

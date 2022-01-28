@@ -1,15 +1,15 @@
-<button class="btn btn-dark" (click)="navback()" > Go home </button>
+<button class="btn btn-dark go-back " (click)="navback()" > Go home </button>
 <div *ngFor="let requests of loanInfo" >
     <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h6 *ngIf="requests.isApproved" class="display-6 approved "> Request Approved</h6>
         <h6 *ngIf="!requests.isApproved" class="display-6 approved "> Request still pending or not approved!! Check again after sometime</h6>
-        <p class="card-text">{{requests.loanType}}</p>
-        <p class="card-text">{{requests.interestRate}}</p>
-        <p class="card-text">{{requests.processingfee}}</p>
-        <p class="card-text">{{requests.loanAmount}}</p>
-        <p class="card-text">{{requests.loanTerm}}</p>
-        <p class="card-text">{{requests.totalamount}}</p>
+        <p class="card-text">Loan type : {{requests.loanType}}</p>
+        <p class="card-text">Interest rate:{{requests.interestRate}} %p.a.</p>
+        <p class="card-text">Processing fee: Rs.{{requests.processingfee}}</p>
+        <p class="card-text">Loan Amount: Rs.{{requests.loanAmount}}</p>
+        <p class="card-text">Loan Term: {{requests.loanTerm}} years</p>
+        <p class="card-text">Total amount: Rs.{{requests.totalamount}}</p>
         <p *ngIf="requests.comment!==''" class="card-text">{{requests.comment}}</p>
         </div>
     </div>
