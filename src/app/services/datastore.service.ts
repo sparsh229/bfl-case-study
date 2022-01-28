@@ -118,6 +118,7 @@ export class DatastoreService {
     for(let i=0;i<data.length;i++){
       if(data[i].email == email){
         data[i].loanInfo[index].isApproved = true;
+        data[i].loanInfo[index].action = true;
         break;
       }
     }
@@ -134,6 +135,7 @@ export class DatastoreService {
     for(let i=0;i<data.length;i++){
       if(data[i].email == email){
         data[i].loanInfo[index].comment = comment;
+        data[i].loanInfo[index].action = true;
         break;
       }
     }

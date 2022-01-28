@@ -10,6 +10,7 @@ export class AllData {
     loanTerm: number;
     totalamount: number;
     isApproved:boolean;
+    action:boolean;
     constructor(){
         this.fname='';
         this.lname = '';
@@ -21,5 +22,6 @@ export class AllData {
         this.loanTerm = 0;
         this.totalamount = 0;
         this.isApproved = false;
+        this.action = false;
     }
 }

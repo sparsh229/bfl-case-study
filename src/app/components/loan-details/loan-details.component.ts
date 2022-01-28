@@ -38,7 +38,8 @@ export class LoanDetailsComponent implements OnInit {
           loanTerm: this.loanDuration.value,
           totalamount: this.totalAmount(this.loanDuration.value,this.loanAmount.value,15,3),
           isApproved:false,
-          comment:''
+          comment:'',
+          action:false
         } 
         break;
       case "home":
@@ -50,7 +51,8 @@ export class LoanDetailsComponent implements OnInit {
           loanTerm: this.loanDuration.value,
           totalamount: this.totalAmount(this.loanDuration.value,this.loanAmount.value,6.7,0.5),
           isApproved:false,
-          comment:''
+          comment:'',
+          action:false
         } 
         break;
       case "car":
@@ -62,7 +64,8 @@ export class LoanDetailsComponent implements OnInit {
           loanTerm: this.loanDuration.value,
           totalamount: this.totalAmount(this.loanDuration.value,this.loanAmount.value,7,0),
           isApproved:false,
-          comment:''
+          comment:'',
+          action:false
         } 
         break;
       case "education":
@@ -74,7 +77,8 @@ export class LoanDetailsComponent implements OnInit {
           loanTerm: this.loanDuration.value,
           totalamount: this.totalAmount(this.loanDuration.value,this.loanAmount.value,9,1),
           isApproved:false,
-          comment:''
+          comment:'',
+          action:false
         }
         break;
       default:

@@ -23,9 +23,9 @@
             <td>{{item.loanTerm}} years</td>
             <td>Rs.{{item.totalamount}}</td>
             <td>{{item.isApproved}}</td>
-            <td ><button [disabled]="action" class="btn btn-primary"(click)="onAccept(item.email,index)" >Accept</button></td>
-            <td ><button [disabled]="action" class="btn btn-danger"(click)="onReject()" >Reject</button></td>
-            <div *ngIf="status" >
+            <td ><button [disabled]="item.action || flag" class="btn btn-primary"(click)="onAccept(item.email,index)" >Accept</button></td>
+            <td ><button [disabled]="item.action || flag" class="btn btn-danger"(click)="onReject()" >Reject</button></td>
+            <div *ngIf="status && !item.action" >
                 <div class="form-group col-sm-3 feedback">
                     <input type="text" class="form-control" id="feedback" [formControl]="feedbackval" >
                     <button class="btn btn-primary" (click)="onSubmit(item.email,index)" >Submit</button>

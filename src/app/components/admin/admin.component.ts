@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DatastoreService } from 'src/app/services/datastore.service';
 import { Data } from 'src/app/models/data';
 import { FormControl } from '@angular/forms';
-import { LoanInfo } from 'src/app/models/loan-info';
 import { AllData } from 'src/app/models/all-data';
 @Component({
   selector: 'app-admin',
@@ -23,20 +22,19 @@ export class AdminComponent implements OnInit {
   feedback:string = '';
   email:string|null = this.activatedroute.snapshot.params['emailid'];
   users:Data[] = this.datastorage.getAllUsers();
-
+  flag:boolean = false;
   items:AllData[]= [];
-  action:boolean = false;
 
   status:boolean = false;
   onAccept(email:string,index:number){
     //find the request and mark accept in its status
     this.datastorage.updateApproval(email,index);
-    this.action = true;
+    this.flag = true;
     alert("Approved");
   }
   onReject(){
     this.status = true;
-    this.action = true;
+    this.flag = true;
   }
   onSubmit(email:string,index:number){
     //open a comment page to add comments - disapproval component
@@ -45,7 +43,6 @@ export class AdminComponent implements OnInit {
     this.datastorage.updateComment(email,index,this.feedback);
     console.log("comment added");
     this.status = false;
-    this.action = true;
     this.router.navigate(['/admin']);
   }
   onLogout(){
@@ -65,6 +62,7 @@ export class AdminComponent implements OnInit {
             processingfee:this.users[i].loanInfo[j].processingfee,
             totalamount:this.users[i].loanInfo[j].totalamount,
             isApproved:this.users[i].loanInfo[j].isApproved,
+            action:this.users[i].loanInfo[j].action,
           })
        }
      }
