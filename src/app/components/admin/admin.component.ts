@@ -21,20 +21,17 @@ export class AdminComponent implements OnInit {
   feedbackval = new FormControl('');
   feedback:string = '';
   email:string|null = this.activatedroute.snapshot.params['emailid'];
-  users:Data[] = this.datastorage.getAllUsers();
-  flag:boolean = false;
+  users:Data[] = [];
   items:AllData[]= [];
 
   status:boolean = false;
   onAccept(email:string,index:number){
     //find the request and mark accept in its status
     this.datastorage.updateApproval(email,index);
-    this.flag = true;
     alert("Approved");
   }
   onReject(){
     this.status = true;
-    this.flag = true;
   }
   onSubmit(email:string,index:number){
     //open a comment page to add comments - disapproval component
@@ -49,9 +46,10 @@ export class AdminComponent implements OnInit {
     this.router.navigate(['/login']);
   }
   getAllData(){
+     this.users = this.datastorage.getAllUsers();
      for(let i =0 ;i<this.users.length;i++){
        for(let j =0;j<this.users[i].loanInfo.length;j++){
-          this.items.push({
+          let pushData:AllData = {
             fname:this.users[i].fname,
             lname:this.users[i].lname,
             email:this.users[i].email,
@@ -63,9 +61,15 @@ export class AdminComponent implements OnInit {
             totalamount:this.users[i].loanInfo[j].totalamount,
             isApproved:this.users[i].loanInfo[j].isApproved,
             action:this.users[i].loanInfo[j].action,
-          })
+          }
+          if(!this.items.includes(pushData)){
+          this.items.push(pushData);
        }
      }
-     console.log(this.items);
    }
+  }
+  onRefresh(){
+    this.items = [];
+    this.getAllData(); 
+  }
 }

@@ -1,5 +1,6 @@
-<div><button class="btn btn-dark go-back " (click)="navback()" > Go home </button></div>
-<div *ngFor="let requests of loanInfo" >
+<button class="btn btn-dark go-back " (click)="navback()" > Go home </button>
+<hr>
+<div class="mycard" *ngFor="let requests of loanInfo" >
     <div class="card" style="width: 18rem;">
         <div class="card-body">
         <h6 *ngIf="requests.isApproved" class="display-6 approved "> Request Approved</h6>

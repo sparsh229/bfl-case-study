@@ -1,5 +1,6 @@
 .go-back{
     float:left;
+    display: block;
     margin:10px 10px;
 }
 .card{
