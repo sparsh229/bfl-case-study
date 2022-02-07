@@ -11,18 +11,16 @@
                   <div class="col-md-6 mb-4">
   
                     <div class="form-outline">
-                      <input type="text" id="firstName" formControlName="fname" name="first" class="form-control form-control-lg" />
-                      <label class="form-label" for="firstName">First Name</label>
+                      <input type="text" id="Name" formControlName="uname" class="form-control form-control-lg" />
+                      <label class="form-label" for="Name">Name</label>
                     </div>
                   </div>
-                  <div *ngIf="forms.get('fname')?.touched && forms.get('fname')?.invalid" class="alert alert-danger">
-                    First Name is required!
-                  </div>
-                  <div class="col-md-6 mb-4">
-  
-                    <div class="form-outline">
-                      <input type="text" id="lastName" formControlName="lname" name="last" class="form-control form-control-lg" />
-                      <label class="form-label" for="lastName">Last Name</label>
+                  <div *ngIf="forms.get('uname')?.invalid && (forms.get('uname')?.dirty||forms.get('uname')?.touched)" class="alert alert-danger">
+                    <div *ngIf="forms.get('uname')?.errors?.['required']">
+                      Name is required!
+                    </div>
+                    <div *ngIf="forms.get('uname')?.errors?.['pattern']">
+                      Use only alphabets and spaces!
                     </div>
                   </div>
                 </div>
@@ -42,8 +40,13 @@
                     </div>
   
                   </div>
-                  <div *ngIf="forms.get('dob')?.touched && forms.get('dob')?.invalid" class="alert alert-danger">
-                    Date of birth is required!
+                  <div *ngIf="forms.get('dob')?.invalid && (forms.get('dob')?.dirty||forms.get('dob')?.touched)" class="alert alert-danger">
+                    <div *ngIf="forms.get('dob')?.errors?.['required']">
+                      Date of birth is required!
+                    </div>
+                    <div *ngIf="forms.get('dob')?.errors?.['pattern']">
+                      Date of birth shiuld be in the format of dd/mm/yyyy!
+                    </div>
                   </div>
                   <div class="col-md-6 mb-4 d-flex align-items-center">
   
@@ -71,8 +74,13 @@
                     </div>
   
                   </div>
-                  <div *ngIf="forms.get('email')?.touched && forms.get('email')?.invalid" class="alert alert-danger">
-                    Please enter a valid email address!
+                  <div  *ngIf="forms.get('email')?.invalid && (forms.get('email')?.dirty||forms.get('email')?.touched)" class="alert alert-danger">
+                    <div *ngIf="forms.get('email')?.errors?.['required']">
+                      email id is required!
+                    </div>
+                    <div *ngIf="forms.get('email')?.errors?.['email']">
+                      Enter correct email id!
+                    </div>
                   </div>
                   <div class="col-md-6 mb-4 pb-2">
   
@@ -98,8 +106,13 @@
                       </div>
     
                     </div>
-                    <div *ngIf="forms.get('phno')?.dirty && forms.get('phno')?.invalid" class="alert alert-danger">
-                      Please enter a phone number!
+                    <div *ngIf="forms.get('phno')?.invalid && (forms.get('phno')?.dirty||forms.get('phno')?.touched)" class="alert alert-danger">
+                      <div *ngIf="forms.get('phno')?.errors?.['required']">
+                       Phone number is required!
+                      </div>
+                      <div *ngIf="forms.get('phno')?.errors?.['pattern']">
+                        Phone number should only contain digits!
+                      </div>
                     </div>
                   </div>
                 <div class="mt-4 pt-2">

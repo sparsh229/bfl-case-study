@@ -17,16 +17,16 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of items ; let index = index">
-            <td>{{item.fname+" "+item.lname}}</td>
+            <td>{{item.uname}}</td>
             <td>{{item.loanType}}</td>
             <td>{{item.interestRate}} % p.a.</td>
             <td>Rs.{{item.loanAmount}}</td>
             <td>{{item.loanTerm}} years</td>
             <td>Rs.{{item.totalamount}}</td>
-            <td>{{item.isApproved}}</td>
-            <td ><button [disabled]="item.action" class="btn btn-primary"(click)="onAccept(item.email,index)" >Accept</button></td>
-            <td ><button [disabled]="item.action" class="btn btn-danger"(click)="onReject()" >Reject</button></td>
-            <div *ngIf="status && !item.action" >
+            <td><p *ngIf="item.isApproved">Yes</p><p *ngIf="!item.isApproved">No</p></td>
+            <td ><button [disabled]="item.isVisited" class="btn btn-primary"(click)="onAccept(item.email,index)" >Accept</button></td>
+            <td ><button [disabled]="item.isVisited" class="btn btn-danger"(click)="onReject()" >Reject</button></td>
+            <div *ngIf="status && !item.isVisited" >
                 <div class="form-group col-sm-6 feedback">
                     <input type="text" class="form-control" id="feedback" [formControl]="feedbackval" >
                     <button class="btn btn-primary" (click)="onSubmit(item.email,index)" >Submit</button>

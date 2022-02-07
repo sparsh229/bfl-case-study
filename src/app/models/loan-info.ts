@@ -6,8 +6,8 @@ export class LoanInfo {
     loanTerm: number;
     totalamount: number;
     isApproved:boolean;
-    comment:string;
-    action:boolean;
+    feedback:string;
+    isVisited:boolean;
     constructor(){
         this.loanType = '';
         this.interestRate = 0;
@@ -16,7 +16,7 @@ export class LoanInfo {
         this.loanTerm = 0;
         this.totalamount = 0;
         this.isApproved = false;
-        this.comment = '';
-        this.action = false;
+        this.feedback = '';
+        this.isVisited = false;
     }
 }

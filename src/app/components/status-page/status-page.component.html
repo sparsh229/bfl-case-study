@@ -1,18 +1,19 @@
 <button class="btn btn-dark go-back " (click)="navback()" > Go home </button>
 <hr>
-<div class="mycard" *ngFor="let requests of loanInfo" >
+<div class="mycard" *ngFor="let requests of loanInfo; let index =index" >
     <div class="card" style="width: 18rem;">
         <div class="card-body">
-        <h6 *ngIf="requests.isApproved" class="display-6 approved "> Request Approved</h6>
-        <div *ngIf="!requests.isApproved && requests.comment==''" class="alert alert-danger"> Request still pending ! Check again after sometime</div>
-        <div *ngIf="!requests.isApproved && requests.comment!==''" class="alert alert-danger"> Request not approved !</div>
+        <h6 *ngIf="requests.isApproved" class="display-6 approved alert alert-success"> Request Approved</h6>
+        <div *ngIf="!requests.isApproved && requests.feedback==''" class="alert alert-danger"> Request still pending ! Check again after sometime</div>
+        <div *ngIf="!requests.isApproved && requests.feedback!==''" class="alert alert-danger"> Request not approved !</div>
         <p class="card-text">Loan type : {{requests.loanType}}</p>
         <p class="card-text">Interest rate:{{requests.interestRate}} %p.a.</p>
         <p class="card-text">Processing fee: Rs.{{requests.processingfee}}</p>
         <p class="card-text">Loan Amount: Rs.{{requests.loanAmount}}</p>
         <p class="card-text">Loan Term: {{requests.loanTerm}} years</p>
         <p class="card-text">Total amount: Rs.{{requests.totalamount}}</p>
-        <p *ngIf="requests.comment!==''" class="card-text">Feedback : {{requests.comment}}</p>
+        <p *ngIf="requests.feedback!==''" class="card-text">Feedback : {{requests.feedback}}</p>
+        <div *ngIf="!requests.isApproved && requests.feedback!==''"> <button class="btn btn-secondary" (click)="modify(index)">Modify request</button> </div>
         </div>
     </div>
 </div>

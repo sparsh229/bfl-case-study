@@ -1,7 +1,6 @@
 import { LoanInfo } from "./loan-info";
 export class Data {
-    fname :string;
-    lname :string;
+    uname :string;
     dob :string;
     gender:string;
     email:string;
@@ -9,8 +8,7 @@ export class Data {
     phno:number;
     loanInfo : LoanInfo[];
     constructor(){
-        this.fname='';
-        this.lname = '';
+        this.uname='';
         this.dob='';
         this.gender='';
         this.email='';

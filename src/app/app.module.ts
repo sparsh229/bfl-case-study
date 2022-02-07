@@ -13,6 +13,7 @@ import { LoanDetailsComponent } from './components/loan-details/loan-details.com
 import { StatusPageComponent } from './components/status-page/status-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { EditComponent } from './components/edit/edit.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EditComponent } from './components/edit/edit.component';
     AppRoutingModule,
     NgbModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
 
   ],
   providers: [],

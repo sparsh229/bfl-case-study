@@ -15,8 +15,15 @@ export class StatusPageComponent implements OnInit {
   }
   //get email id
   email:string|null = this.activatedroute.snapshot.paramMap.get('emailid');
+
   //get loan info from service
   loanInfo:LoanInfo[] = this.datastore.getLoanInfo(this.email);
+
+  //modify request if rejected
+  modify(loanid:number){
+    this.router.navigate(['/loandetails',this.email,{loanid:loanid}]);
+  }
+  
   navback(){
     this.router.navigate(['/userprofile',this.email]);//pass another paramter for user id
   }

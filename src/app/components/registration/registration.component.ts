@@ -12,13 +12,12 @@ export class RegistrationComponent implements OnInit {
   people:Data = new Data();
   userExists:boolean = false;
   forms = new FormGroup({
-    fname : new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z]*')]),
-    lname : new FormControl('',Validators.pattern('[a-zA-Z]*')),
-    dob : new FormControl('',Validators.required),
+    uname : new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z ]{1,32}')]),
+    dob : new FormControl('',[Validators.required,Validators.pattern('[0-9]{2}/[0-9]{2}/[0-9]{4}')]),
     gender : new FormControl(''),
     email : new FormControl('',[Validators.email,Validators.required]),
     password : new FormControl('',[Validators.required,Validators.minLength(8)]),
-    phno : new FormControl('',Validators.required),
+    phno : new FormControl('',[Validators.required,Validators.pattern('[0-9]{10}')]),
   });
   constructor(private dataStore:DatastoreService,private router:Router) { }
 
@@ -28,8 +27,7 @@ export class RegistrationComponent implements OnInit {
     let user:Data =  this.dataStore.matchData(this.forms.get('email')?.value);
     if(Object.keys(user).length===0){
       this.people = {
-        fname:this.forms.get('fname')?.value,
-        lname:this.forms.get('lname')?.value,
+        uname:this.forms.get('uname')?.value,
         dob:this.forms.get('dob')?.value,
         gender:this.forms.get('gender')?.value,
         email:this.forms.get('email')?.value,
@@ -40,10 +38,10 @@ export class RegistrationComponent implements OnInit {
       this.dataStore.setData(this.people);
       this.people = new Data();
       this.router.navigateByUrl("/login");
-    }else{
-      this.userExists = true;
-      return;
-    }
+      }else{
+          this.userExists = true;
+          return;
+      }
   }
 
 }

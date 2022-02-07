@@ -1,7 +1,6 @@
 
 export class AllData {
-    fname :string;
-    lname :string;
+    uname :string;
     email:string;
     loanType:string;
     interestRate: number;
@@ -10,10 +9,9 @@ export class AllData {
     loanTerm: number;
     totalamount: number;
     isApproved:boolean;
-    action:boolean;
+    isVisited:boolean;
     constructor(){
-        this.fname='';
-        this.lname = '';
+        this.uname='';
         this.email='';
         this.loanType = '';
         this.interestRate = 0;
@@ -22,6 +20,6 @@ export class AllData {
         this.loanTerm = 0;
         this.totalamount = 0;
         this.isApproved = false;
-        this.action = false;
+        this.isVisited = false;
     }
 }

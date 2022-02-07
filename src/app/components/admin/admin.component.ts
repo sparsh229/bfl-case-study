@@ -16,31 +16,40 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void {
     this.getAllData();
   }
-  //import data from loan-info model from local storage and display array in table
+
   //get email id from params
+  email:string|null = this.activatedroute.snapshot.params['emailid'];
+
+  //get input from admin
   feedbackval = new FormControl('');
   feedback:string = '';
-  email:string|null = this.activatedroute.snapshot.params['emailid'];
   users:Data[] = [];
   items:AllData[]= [];
 
+  //check if request is rejectd show feedback form
   status:boolean = false;
+  isApproved:boolean = false;
+  //on approval
   onAccept(email:string,index:number){
     //find the request and mark accept in its status
     this.datastorage.updateApproval(email,index);
-    alert("Approved");
+    this.isApproved = true;
+    this.onRefresh();
+
   }
+
+  //on rejection
   onReject(){
     this.status = true;
   }
+  //feedback submission
   onSubmit(email:string,index:number){
     //open a comment page to add comments - disapproval component
     // show user the reason for disapproval
     this.feedback = this.feedbackval.value;
     this.datastorage.updateComment(email,index,this.feedback);
-    console.log("comment added");
     this.status = false;
-    this.router.navigate(['/admin']);
+    this.onRefresh();
   }
   onLogout(){
     this.router.navigate(['/login']);
@@ -50,8 +59,7 @@ export class AdminComponent implements OnInit {
      for(let i =0 ;i<this.users.length;i++){
        for(let j =0;j<this.users[i].loanInfo.length;j++){
           let pushData:AllData = {
-            fname:this.users[i].fname,
-            lname:this.users[i].lname,
+            uname:this.users[i].uname,
             email:this.users[i].email,
             loanType:this.users[i].loanInfo[j].loanType,
             loanAmount:this.users[i].loanInfo[j].loanAmount,
@@ -60,7 +68,7 @@ export class AdminComponent implements OnInit {
             processingfee:this.users[i].loanInfo[j].processingfee,
             totalamount:this.users[i].loanInfo[j].totalamount,
             isApproved:this.users[i].loanInfo[j].isApproved,
-            action:this.users[i].loanInfo[j].action,
+            isVisited:this.users[i].loanInfo[j].isVisited,
           }
           if(!this.items.includes(pushData)){
           this.items.push(pushData);

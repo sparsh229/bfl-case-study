@@ -22,13 +22,14 @@ export class LoginComponent implements OnInit {
       this.adminservice.isAdmin = true;
       this.router.navigateByUrl('/admin');
       return;
-    }
-    let data:Data = this.dataStore.matchData(this.email.value);
-    if(data.email == this.email.value && data.password == this.password.value){
-      this.success = true;
-      this.router.navigate(['/userprofile',data.email]);
-    }else {
-      this.isHit = true;
+    }else{
+      let data:any = this.dataStore.matchData(this.email.value);
+      if(data.email == this.email.value && data.password == this.password.value){
+        this.success = true;
+        this.router.navigate(['/userprofile',data.email]);
+      }else {
+        this.isHit = true;
+      }
     }
   }
 

@@ -4,6 +4,7 @@
     margin:10px 10px;
 }
 .card{
+    display: contents;
     margin:10px 10px;
     align-items: center;
 }

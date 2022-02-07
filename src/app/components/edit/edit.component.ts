@@ -14,34 +14,42 @@ export class EditComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    setTimeout(()=>{
+      this.forms.patchValue({
+        uname:this.user.uname,
+        dob:this.user.dob,
+        gender:this.user.gender,
+        phno:this.user.phno
+      });
+    })
   }
+
   //get email id from params
   email:string|null = this.activatedroute.snapshot.params['emailid'];
+
   //get data from local storage and display it in the form
   user:Data = this.datastorage.matchData(this.email);
+
   //show retrived data in value attribute inside input tags to get displayed inside the form
   //take modifications from the form and save it in local storage
   forms = new FormGroup({
-    fname : new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z]*')]),
-    lname : new FormControl('',Validators.pattern('[a-zA-Z]*')),
-    dob : new FormControl('',Validators.required),
+    uname : new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z ]{1,32}')]),
+    dob : new FormControl('',[Validators.required,Validators.pattern('[0-9]{2}/[0-9]{2}/[0-9]{4}')]),
     gender : new FormControl(''),
-    email : new FormControl('',[Validators.email,Validators.required]),
     password : new FormControl('',[Validators.required,Validators.minLength(8)]),
-    phno : new FormControl('',Validators.required),
+    phno : new FormControl('',[Validators.required,Validators.pattern('[0-9]{10}')]),
   });
   onSubmit(){
     this.people = {
-      fname:this.forms.get('fname')?.value,
-      lname:this.forms.get('lname')?.value,
+      uname:this.forms.get('uname')?.value,
       dob:this.forms.get('dob')?.value,
       gender:this.forms.get('gender')?.value,
-      email:this.user.email, //email could not be changed hence retrieve and pass
+      email:this.user.email, 
       password:this.forms.get('password')?.value,
       phno:this.forms.get('phno')?.value,
       loanInfo:[]
     }
     this.datastorage.updateData(this.people,this.email);
-    this.router.navigate(['/userprofile',this.email])//pass second argument to navigate to userprofile
+    this.router.navigate(['/userprofile',this.email])
   }
 }
