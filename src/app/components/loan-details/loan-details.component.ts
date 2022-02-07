@@ -14,25 +14,26 @@ export class LoanDetailsComponent implements OnInit {
   } 
 
   ngOnInit(): void {
-    if(this.loanInfoData!==undefined){
-      setTimeout(()=>{
-        this.forms.patchValue({
-          LoanTypeValue:this.loanInfoData.loanType,
-          loanAmount:this.loanInfoData.loanAmount,
-          loanDuration:this.loanInfoData.loanTerm
-        });
-      })
-    }
+    //displaying the data into the laon  info form
+    // if(this.loanInfoData!==undefined){
+    //   setTimeout(()=>{
+    //     this.forms.patchValue({
+    //       LoanTypeValue:this.loanInfoData.loanType,
+    //       loanAmount:this.loanInfoData.loanAmount,
+    //       loanDuration:this.loanInfoData.loanTerm
+    //     });
+    //   })
+    // }
 
   }
 
   //get loan type from local storage
   emailid:string|null = this.activatedroute.snapshot.paramMap.get('emailid');
   //get loan index if available // optional parameter
-  loanid:string|null = this.activatedroute.snapshot.paramMap.get('loanid');
+  // loanid:string|null = this.activatedroute.snapshot.paramMap.get('loanid');
 
   //get loan info
-  loanInfoData:LoanInfo = this.dataStore.getLoanInfoByIndex(this.emailid,this.loanid);
+  // loanInfoData:LoanInfo = this.dataStore.getLoanInfoByIndex(this.emailid,this.loanid);
 
   //form input
   forms = new FormGroup({
@@ -114,6 +115,7 @@ export class LoanDetailsComponent implements OnInit {
     }
     //storing data inside local storage
     //first sending it to service
+    console.log(loan);
     this.dataStore.setLoanInfo(loan,this.emailid);
     //redirecting to status page
     this.router.navigate(['/statuspage',this.emailid]);

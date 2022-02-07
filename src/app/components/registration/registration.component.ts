@@ -11,9 +11,10 @@ import { FormGroup ,FormControl,Validators} from '@angular/forms';
 export class RegistrationComponent implements OnInit {
   people:Data = new Data();
   userExists:boolean = false;
+
   forms = new FormGroup({
     uname : new FormControl('',[Validators.required,Validators.pattern('[a-zA-Z ]{1,32}')]),
-    dob : new FormControl('',[Validators.required,Validators.pattern('[0-9]{2}/[0-9]{2}/[0-9]{4}')]),
+    dob : new FormControl('',[Validators.required,Validators.pattern('[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}')]),
     gender : new FormControl(''),
     email : new FormControl('',[Validators.email,Validators.required]),
     password : new FormControl('',[Validators.required,Validators.minLength(8)]),
@@ -25,7 +26,7 @@ export class RegistrationComponent implements OnInit {
   }
   onSubmit(){
     let user:Data =  this.dataStore.matchData(this.forms.get('email')?.value);
-    if(Object.keys(user).length===0){
+    if(user.email === ""){
       this.people = {
         uname:this.forms.get('uname')?.value,
         dob:this.forms.get('dob')?.value,
@@ -38,10 +39,10 @@ export class RegistrationComponent implements OnInit {
       this.dataStore.setData(this.people);
       this.people = new Data();
       this.router.navigateByUrl("/login");
-      }else{
-          this.userExists = true;
-          return;
-      }
+    }else{
+      this.userExists = true;
+      return;
+    }
   }
 
 }
